@@ -16,3 +16,12 @@ Alternatively, you can download the latest release from the [releases page](http
 
 ## Usage
 To be frank, this tool was made for personal use and the templates are configured for Hibzz Games. So, please fork the repo and make the appropriate changes on the template to use it. The package creation process can be triggered by pressing the `Launch Package Creator` button under the `Windows` tab.
+
+<br>
+
+### Known Issues
+There are a couple of known issue with this tool and since it's for personal use, I might just overlook it. Anyways the issues for transparency:
+- The meta files don't get committed into the inital commit
+  - Workaround - Ammend the meta file changes into the initial commit
+- The asset database refresh doesn't work immediately and the newly added package isn't visible in the editor
+  - Workaround - Tab out of the editor and tab back in for the refresh to work correctly

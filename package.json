@@ -1,6 +1,6 @@
 {
   "name": "com.hibzz.packagecreator",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "displayName": "hibzz.packagecreator",
   "description": "A tool to easily create packages from the Unity Editor",
   "author": {
