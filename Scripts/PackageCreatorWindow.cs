@@ -31,8 +31,10 @@ namespace Hibzz.PackageCreator
 
 			// package description
 			GUILayout.Space(10);
+			EditorStyles.textField.wordWrap = true;
 			EditorGUILayout.PrefixLabel("Description");
 			packagedescription = EditorGUILayout.TextArea(packagedescription, GUILayout.Height(position.height - 110));
+			EditorStyles.textField.wordWrap = false;
 
 			// add a button
 			GUILayout.FlexibleSpace();
@@ -41,14 +43,8 @@ namespace Hibzz.PackageCreator
 				// close the window
 				Close();
 
-				// open progress bar
-				EditorUtility.DisplayProgressBar("Hibzz.Package Creator", $"Creating {packagename}...", 0.1f);
-
 				// create package
 				PackageCreator.CreatePackage(packagename, packagedescription);
-
-				// close the progress bar
-				EditorUtility.ClearProgressBar();
 			}
 
 			GUILayout.EndArea();

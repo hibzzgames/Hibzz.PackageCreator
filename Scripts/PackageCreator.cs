@@ -1,10 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using UnityEditor;
-using UnityEngine;
 
 namespace Hibzz.PackageCreator
 {
@@ -15,6 +12,8 @@ namespace Hibzz.PackageCreator
 		const string PACKAGE_JSON_PATH = TEMPLATE_PATH + "\\package.json.template";
 		const string LICENSE_PATH      = TEMPLATE_PATH + "\\license.template";
 		const string ASMDEF_PATH       = TEMPLATE_PATH + "\\asmdef.template";
+
+		public const string GIT_INIT_KEY = "HIBZZ_PC_GIT_INIT_PREFS_KEY";
 
 		static string name = "";
 		static string description = "";
@@ -51,11 +50,14 @@ namespace Hibzz.PackageCreator
 			var asmdef_content = ReadTemplate(ASMDEF_PATH);
 			File.WriteAllText($"{package_path}\\com.hibzz.{name.ToLower()}.asmdef", asmdef_content);
 
-			// initialize a git repository here
-			InitializeGitRepo(package_path);
-
-			// the asset database must be refreshed for the user to see the newly added package
+			// Refresh asset database doesn't work and I can't figure out the
+			// reason why... but anyways doing it so that in case in a later
+			// patch unity fixes this issue
 			AssetDatabase.Refresh();
+
+			// set the editor prefs string letting the next refresh know to do
+			// a git initialization
+			EditorPrefs.SetString(GIT_INIT_KEY, package_path);
 		}
 
 		/// <summary>
@@ -79,7 +81,7 @@ namespace Hibzz.PackageCreator
 		/// Initialize a git repo for the package
 		/// </summary>
 		/// <param name="path">The path to the newly created package</param>
-		static void InitializeGitRepo(string path)
+		public static void InitializeGitRepo(string path)
 		{
 			// > git init .
 			var init_process = new Process()

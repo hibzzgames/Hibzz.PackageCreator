@@ -21,7 +21,5 @@ To be frank, this tool was made for personal use and the templates are configure
 
 ### Known Issues
 There are a couple of known issue with this tool and since it's for personal use, I might just overlook it. Anyways the issues for transparency:
-- The meta files don't get committed into the inital commit
-  - Workaround - Ammend the meta file changes into the initial commit
 - The asset database refresh doesn't work immediately and the newly added package isn't visible in the editor
-  - Workaround - Tab out of the editor and tab back in for the refresh to work correctly
+  - Workaround - Press CTRL + R to manually perform an asset database refresh
