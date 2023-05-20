@@ -12,6 +12,7 @@ namespace Hibzz.PackageCreator
 		const string PACKAGE_JSON_PATH = TEMPLATE_PATH + "\\package.json.template";
 		const string LICENSE_PATH      = TEMPLATE_PATH + "\\license.template";
 		const string ASMDEF_PATH       = TEMPLATE_PATH + "\\asmdef.template";
+		const string FUNDING_PATH      = TEMPLATE_PATH + "\\FUNDING.yml.template";
 
 		public const string GIT_INIT_KEY = "HIBZZ_PC_GIT_INIT_PREFS_KEY";
 
@@ -49,6 +50,13 @@ namespace Hibzz.PackageCreator
 			// create the assembly definition based on the template
 			var asmdef_content = ReadTemplate(ASMDEF_PATH);
 			File.WriteAllText($"{package_path}\\com.hibzz.{name.ToLower()}.asmdef", asmdef_content);
+
+			// create the directory that'll host the FUNDING.yml file
+			Directory.CreateDirectory($"{package_path}\\.github");
+
+			// create the FUNDING.yml file
+			var funding_content = ReadTemplate(FUNDING_PATH);
+			File.WriteAllText($"{package_path}\\.github\\FUNDING.yml", funding_content);
 
 			// Refresh asset database doesn't work and I can't figure out the
 			// reason why... but anyways doing it so that in case in a later
