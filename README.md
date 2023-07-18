@@ -19,11 +19,6 @@ To be frank, this tool was made for personal use and the templates are configure
 
 <br>
 
-### Known Issues
-There are a couple of known issues with this tool and since it's for personal use, I might just overlook it. Anyways the issues for transparency:
-- The asset database refresh doesn't work immediately and the newly added package isn't visible in the editor
-  - Workaround - Press CTRL + R to manually perform an asset database refresh
-
 ## Have a question or want to contribute?
 If you have any questions or want to contribute, feel free to join the [Discord server](https://discord.gg/YXdJ8cZngB) or [Twitter](https://twitter.com/hibzzgames). I'm always looking for feedback and ways to improve this tool. Thanks!
 

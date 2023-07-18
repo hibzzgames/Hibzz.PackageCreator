@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using UnityEditor;
+using UnityEditor.PackageManager;
 
 namespace Hibzz.PackageCreator
 {
@@ -58,10 +59,9 @@ namespace Hibzz.PackageCreator
 			var funding_content = ReadTemplate(FUNDING_PATH);
 			File.WriteAllText($"{package_path}\\.github\\FUNDING.yml", funding_content);
 
-			// Refresh asset database doesn't work and I can't figure out the
-			// reason why... but anyways doing it so that in case in a later
-			// patch unity fixes this issue
-			AssetDatabase.Refresh();
+			// Ask the package manager client to force resolve the package
+			// because all the required files have now been added
+			Client.Resolve();
 
 			// set the editor prefs string letting the next refresh know to do
 			// a git initialization
