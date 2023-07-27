@@ -15,7 +15,7 @@ Alternatively, you can download the latest release from the [releases page](http
 <br>
 
 ## Usage
-To be frank, this tool was made for personal use and the templates are configured for Hibzz Games. So, please fork the repo and make the appropriate changes to the template to use it. The package creation process can be triggered by pressing the `Launch Package Creator` button under the `Windows` tab.
+To be frank, this tool was made for personal use and the templates are configured for Hibzz Games. So, please fork the repo and make the appropriate changes to the template to use it. The package creation process can be triggered by pressing the `Package Creator` button under the `Hibzz` tab.
 
 <br>
 
