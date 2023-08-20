@@ -5,8 +5,7 @@ namespace Hibzz.PackageCreator
 {
 	internal class PackageCreatorWindow : EditorWindow
 	{
-		[MenuItem("Hibzz/Package Creator")]
-		static void OpenPackageCreator()
+		public static void OpenPackageCreator()
 		{
 			// open package creator editor window
 			var window = GetWindow<PackageCreatorWindow>();
