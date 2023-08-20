@@ -10,12 +10,12 @@ This package can be installed in the Unity Package Manager using the following g
 https://github.com/Hibzz-Games/Hibzz.PackageCreator.git
 ```
 
-Alternatively, you can download the latest release from the [releases page](https://github.com/Hibzz-Games/Hibzz.PackageCreator/releases) and manually import the package into your project.
-
 <br>
 
 ## Usage
-To be frank, this tool was made for personal use and the templates are configured for Hibzz Games. So, please fork the repo and make the appropriate changes to the template to use it. The package creation process can be triggered by pressing the `Package Creator` button under the `Hibzz` tab.
+To be frank, this tool was made for personal use and the templates are configured for Hibzz Games. So, please fork the repo and make the appropriate changes to the template to use it. The package creation process can be triggered by pressing the `Add new package...` button under the `+` menu in the Unity Package Manager. 
+
+Update `1.4.0` tries to create more native-like integration with the Unity Package Manager by accessing it's internal API using an experimental method. If things are not working as expected, please revert to version `1.3.0`.
 
 <br>
 
