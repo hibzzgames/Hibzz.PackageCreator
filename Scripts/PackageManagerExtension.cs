@@ -2,7 +2,6 @@ using System;
 using System.Reflection;
 using UnityEditor;
 using UnityEditor.PackageManager.UI;
-using UnityEditor.PackageManager.UI.Internal;
 using UnityEngine.UIElements;
 
 using PackageInfo = UnityEditor.PackageManager.PackageInfo;
