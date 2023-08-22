@@ -1,5 +1,5 @@
 {
-    "name": "Unity.PackageManagerUI.Develop.Editor",
+    "name": "com.hibzz.packagecreator",
     "rootNamespace": "Hibzz.PackageCreator",
     "references": [],
     "includePlatforms": [
