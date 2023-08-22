@@ -1,3 +1,5 @@
+using System;
+using System.Reflection;
 using UnityEditor;
 using UnityEditor.PackageManager.UI;
 using UnityEditor.PackageManager.UI.Internal;
@@ -30,10 +32,10 @@ namespace Hibzz.PackageCreator
 
         public void OnPackageRemoved(PackageInfo packageInfo) { }
 
-        public void OnPackageSelectionChange(PackageInfo packageInfo) 
+        public void OnPackageSelectionChange(PackageInfo packageInfo)
         {
             // already initialized, skip
-            if(isInitialized) { return; }
+            if (isInitialized) { return; }
 
             // create the hook
             SetupHook();
@@ -44,32 +46,29 @@ namespace Hibzz.PackageCreator
 
         public void SetupHook()
         {
+            // let's get a reference to the UnityEditor.CoreModule assembly
+            var editorCoreModuleAssembly = Assembly.Load("UnityEditor.CoreModule");
+            if (editorCoreModuleAssembly == null) { return; }
+
+            // from the assembly, we need to get the type
+            var toolbarType = editorCoreModuleAssembly.GetType("UnityEditor.PackageManager.UI.Internal.PackageManagerToolbar");
+            if (toolbarType == null) { return; }
+
             // get the package manager root and from it a reference to the toolbar
             var root = this.GetRoot().Q<TemplateContainer>();
-            var toolbar = root.Q<PackageManagerToolbar>();
+            var toolbar = ReflectionTools.Call(typeof(UQueryExtensions), "Q",
+                new Type[] { toolbarType },  // genericTypes
+                root, null, new string[] { } // args
+                );
+
+            // make sure the toolbar is found
+            if (toolbar == null) { return; }
 
             // add a create package option to the add the button
-            var createPackageItem = toolbar.addMenu.AddBuiltInDropdownItem();
-            createPackageItem.text = "Add new package...";
-            createPackageItem.action = PackageCreatorWindow.OpenPackageCreator;
-        }
-    }
-
-    internal static class VisualElementExtension
-    {
-        public static VisualElement GetRoot(this VisualElement element)
-        {
-            // given element is null (how?)
-            if (element == null) { return null; }
-
-            // recursively look at parents
-            while (element.parent != null)
-            {
-                element = element.parent;
-            }
-
-            // the parent element is null
-            return element;
+            var addMenu = ReflectionTools.Get(toolbar, "addMenu");
+            var createPackageItem = ReflectionTools.Call(addMenu, "AddBuiltInDropdownItem");
+            ReflectionTools.Set(createPackageItem, "text", "Add new package...");
+            ReflectionTools.Set(createPackageItem, "action", new Action(PackageCreatorWindow.OpenPackageCreator));
         }
     }
 }
